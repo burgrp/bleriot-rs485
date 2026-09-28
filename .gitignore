@@ -2,7 +2,3 @@
 \#*
 _autosave*
 *.lck
-
-# fw firmware build artifacts
-fw/*.elf
-fw/size-report.html

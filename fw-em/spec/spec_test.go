@@ -4,6 +4,8 @@ import (
 	"math"
 	"slices"
 	"testing"
+
+	"github.com/burgrp/bleriot/lib/shared/firmware"
 )
 
 func TestTypeMatchesDeployedRegisterContract(t *testing.T) {
@@ -66,6 +68,19 @@ func TestTypeMatchesDeployedRegisterContract(t *testing.T) {
 		if register.Conversion.Decode == nil || register.Conversion.Encode != nil {
 			t.Errorf("register %q does not have a decode-only conversion", register.Name)
 		}
+	}
+}
+
+func TestFirmwareProfile(t *testing.T) {
+	profile := Type().Firmware
+	if profile.Package != "github.com/burgrp/bleriot-rs485/fw-em" {
+		t.Fatalf("firmware package = %q", profile.Package)
+	}
+	if profile.TinyGo.Scheduler != firmware.SchedulerTasks || profile.TinyGo.StackSizeBytes != 1024 {
+		t.Fatalf("TinyGo profile = %+v", profile.TinyGo)
+	}
+	if !profile.PyOCD.Reclaim || profile.PyOCD.ReclaimDelayMilliseconds != 1000 {
+		t.Fatalf("pyOCD profile = %+v", profile.PyOCD)
 	}
 }
 

@@ -1,4 +1,4 @@
-package main
+package energymeter
 
 import "github.com/burgrp/bleriot-rs485/fw-em/spec"
 

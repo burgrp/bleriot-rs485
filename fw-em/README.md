@@ -1,6 +1,6 @@
 # BleRiot RS485 energy-meter firmware
 
-`fw-em` is the BleRiot node firmware for one three-phase DIN-rail energy meter
+`fw-em` is the importable BleRiot `energymeter` firmware for one three-phase DIN-rail energy meter
 connected to one Bleriot RS485 board. The same source builds the independently
 provisioned `em.grid` and `em.house` nodes; each image polls only its local meter.
 
@@ -51,16 +51,17 @@ if the assembled part has a different suffix.
 
 ```sh
 go test ./...
-go run . gen em.grid
-go run . make em.grid build
-go run . make em.house build
-go run . make em.grid flash
+go run ./cmd/dev node gen --name em.grid
+go run ./cmd/dev node build --name em.grid --disassembly
+go run ./cmd/dev node build --name em.house
+go run ./cmd/dev node build --name em.grid --flash --rtt
 ```
 
-`make` is driven through the BleRiot CLI so it generates `main_gen.go` with the
-selected node's address, key, RF channel, and meter configuration before each
-build. Start the bridge with the Registry endpoint used by the site:
+The device type owns the scheduler-tasks, 1024-byte stack, RTT, and pyOCD build
+profile. BleRiot generates a private module under `.bleriot/firmware/<instance>`
+and calls `energymeter.Run` with the selected node's address, key, RF channel,
+and meter configuration. Start the bridge with the Registry endpoint used by the site:
 
 ```sh
-go run . hub --registry http://registry-host:port
+go run ./cmd/dev hub --registry http://registry-host:port
 ```

@@ -1,4 +1,4 @@
-package main
+package energymeter
 
 import (
 	"sync/atomic"

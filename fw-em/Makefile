@@ -1,36 +1,21 @@
-ifndef BLERIOT_MAKE
+INSTANCE ?= em.grid
 
-$(or $(MAKECMDGOALS),build): __bleriot_bounce
-	@:
-.PHONY: __bleriot_bounce $(MAKECMDGOALS)
-__bleriot_bounce:
-	@go run . make $(MAKECMDGOALS)
-
-else
-
-IMAGE = image.elf
-
-.PHONY: build flash gdb rtt install-pack disassembly
+.PHONY: build flash gdb rtt install-pack disassembly new hub
 
 build:
-	tinygo build --stack-size 1024b --size html --serial rtt --scheduler tasks -print-allocs=. --gc leaking --target ${TARGET_TINYGO} -o ${IMAGE} .
+	go run ./cmd/dev node build --name $(INSTANCE)
 
-flash: build
-	pkill pyocd || true
-	sleep 1
-	pyocd load -t ${TARGET_PYOCD} ${IMAGE}
-	pyocd rtt -t ${TARGET_PYOCD}
+flash:
+	go run ./cmd/dev node build --name $(INSTANCE) --flash --rtt
 
-gdb:
-	pyocd gdb --target ${TARGET_PYOCD} --semihosting --persist
+disassembly:
+	go run ./cmd/dev node build --name $(INSTANCE) --disassembly
 
-rtt:
-	pyocd rtt -t ${TARGET_PYOCD}
+gdb rtt install-pack:
+	go run ./cmd/dev node $@ --name $(INSTANCE)
 
-install-pack:
-	pyocd pack install ${CMSIS_PACK}
+new:
+	go run ./cmd/dev node new
 
-disassembly: build
-	arm-none-eabi-objdump -dS ${IMAGE} > disassembly.txt
-
-endif
+hub:
+	go run ./cmd/dev hub --diagnostics rf

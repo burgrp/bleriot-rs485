@@ -1,6 +1,6 @@
 //go:build tinygo
 
-package main
+package energymeter
 
 import (
 	"machine"
@@ -93,7 +93,8 @@ func finiteFloat32Bits(raw int32) bool {
 	return uint32(raw)&0x7F800000 != 0x7F800000
 }
 
-func bleriotMain(provisioning node.Provisioning, config spec.Config) {
+// Run starts the RS485 energy-meter firmware with baked provisioning and configuration.
+func Run(provisioning node.Provisioning, config spec.Config) {
 	pinStatus.Configure(machine.PinConfig{Mode: machine.PinOutput})
 	pinStatus.Low()
 

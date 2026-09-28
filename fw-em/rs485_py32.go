@@ -1,6 +1,6 @@
 //go:build tinygo
 
-package main
+package energymeter
 
 import (
 	"device/py32"

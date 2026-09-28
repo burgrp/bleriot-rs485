@@ -1,5 +1,4 @@
-//go:build !tinygo
-
+// Command dev is the local RS485 energy-meter inventory and BleRiot CLI.
 package main
 
 import (

@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"math"
 
+	"github.com/burgrp/bleriot/lib/shared/firmware"
 	"github.com/burgrp/bleriot/lib/shared/inventory"
 	"github.com/burgrp/bleriot/lib/shared/puya"
 )
@@ -29,6 +30,21 @@ func Type() inventory.DeviceType {
 	return inventory.DeviceType{
 		Name: "em",
 		Chip: Chip,
+		Firmware: firmware.Manifest{
+			Package: "github.com/burgrp/bleriot-rs485/fw-em",
+			TinyGo: firmware.TinyGoProfile{
+				Scheduler:        firmware.SchedulerTasks,
+				StackSizeBytes:   1024,
+				GarbageCollector: firmware.GCLeaking,
+				Serial:           firmware.SerialRTT,
+				SizeReport:       firmware.SizeReportHTML,
+				PrintAllocs:      true,
+			},
+			PyOCD: firmware.PyOCDProfile{
+				Reclaim:                  true,
+				ReclaimDelayMilliseconds: 1000,
+			},
+		},
 		Registers: []inventory.Register{
 			register(RegVoltage1, "voltage.1", "Voltage L1", "V"),
 			register(RegVoltage2, "voltage.2", "Voltage L2", "V"),
