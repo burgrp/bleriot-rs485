@@ -2,10 +2,10 @@ module github.com/burgrp/bleriot-rs485/fw-em
 
 go 1.25.2
 
-require github.com/burgrp/bleriot/lib v1.10.2
+require github.com/burgrp/bleriot/lib v1.10.3
 
 require (
-	github.com/burgrp/reg v1.0.12 // indirect
+	github.com/burgrp/reg v1.0.15 // indirect
 	github.com/burgrp/tinygo-drivers/bb/spi v1.0.0 // indirect
 	github.com/burgrp/tinygo-drivers/pan211x v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect

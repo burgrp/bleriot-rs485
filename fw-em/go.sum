@@ -1,7 +1,7 @@
-github.com/burgrp/bleriot/lib v1.10.2 h1:0BQqW1CUy537b2C4Gu3isqMSrdHB8AzPhq08Mnx14Fs=
-github.com/burgrp/bleriot/lib v1.10.2/go.mod h1:9SucOZ2d4u2uA0lT6Gk4u97epC+6vTdjDDczsn0n+ZM=
-github.com/burgrp/reg v1.0.12 h1:HwIoFrv06NBaJxZuyOIGHtwQ/MX7K4EJnEZm+fGAnz4=
-github.com/burgrp/reg v1.0.12/go.mod h1:hvDI6sL/cvfcOCCA+reXCe8T6eMgqAJxj7OClXq99zw=
+github.com/burgrp/bleriot/lib v1.10.3 h1:+ZWNP1djcQ/ETViZWU8N0qaz49Vv1RqmrHQtFVSqKkM=
+github.com/burgrp/bleriot/lib v1.10.3/go.mod h1:528uM0A0HmED76/zYdDyHzulFqipJrF4LCvJDFB4AtM=
+github.com/burgrp/reg v1.0.15 h1:Z/xL+xW/WntQ2UEc7WrS0TBbSaGs4kbi3+2UjidY4Rw=
+github.com/burgrp/reg v1.0.15/go.mod h1:hvDI6sL/cvfcOCCA+reXCe8T6eMgqAJxj7OClXq99zw=
 github.com/burgrp/tinygo-drivers/bb/spi v1.0.0 h1:vJg7NLwEL7Dlqln6lH3Zfid/7o7qDLC+lnY/XD4YU5Y=
 github.com/burgrp/tinygo-drivers/bb/spi v1.0.0/go.mod h1:ryUKCGYUQUGbb+z/OsbomhY+CdFnDk4x2EpeK06xc8Q=
 github.com/burgrp/tinygo-drivers/pan211x v1.0.0 h1:4Y9NQBapSEHkDa0+qS5aXzcUy5E+RhQJPo9JV1oxWjc=
